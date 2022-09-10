@@ -1,0 +1,23 @@
+.table {
+  tr {
+    border-bottom: solid 1px white;
+    td {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
+.accordion-item {
+  background-color: transparent;
+}
+.accordion-button {
+  background-color: transparent;
+  color: white;
+  &:after {
+    filter: invert(1);
+  }
+}
+.avsnitt {
+  box-shadow: 0px 0px 2px 1px #000;
+  border-radius: 10px;
+}

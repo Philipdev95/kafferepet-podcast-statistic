@@ -1,0 +1,174 @@
+<app-header></app-header>
+<div class="container bg-dark text-white py-3">
+  <div class="row">
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            <h2>Alla avsnitt och vinnarstories</h2>
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <div class="row">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Sök</span>
+                <input class="form-control" type="text" id="myInput" (keyup)="send($event)" placeholder="...avsnittsnamn, storynamn, vinnarstory, försnack, gäster..." aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+              <div *ngIf="!episodeArray.length">
+                <h2 class="col-12">Laddar historier...</h2>
+                <div class="col-12 text-center">
+                  <img width="200px" style="border-radius: 100%;" src="https://media1.giphy.com/media/Eu7OL4Av9qhLcorP8o/giphy.gif?cid=790b7611af77b229b7ef24368354bfb94453674c65cb5839&rid=giphy.gif">
+                </div>
+              </div>
+              <ng-container *ngFor="let episode of episodeArray">
+                <div *ngIf="episode.show" class="col-12 col-md-6 col-xl-4">
+                  <div class="avsnitt my-3 mx-1 px-4 py-3">
+
+                    <!-- Episode namn -->
+                    <ng-container *ngIf="episode.name">
+                      <span class="text-muted">Avsnitt:</span>
+                      <h3>{{episode.name}}</h3>
+                    </ng-container>
+
+                    <!-- Episode vinnarstory info -->
+                    <ng-container *ngIf="episode.winnerstory !== '\r'">
+                      <span class="text-muted">Vinnarstory:</span>
+                      <h5 class="mb-1">
+                        {{ episode.winnerstory + ' ' + episode.winnerstorytime }}
+                      </h5>
+                      <p *ngIf="episode.winnerstorydesc" class="max-height-1">
+                        <i class="text-muted">{{ episode.winnerstorydesc }}</i>
+                      </p>
+                    </ng-container>
+
+                    <!-- Episode berättarorder -->
+                    <p *ngIf="episode.first && episode.third" class="text-muted mb-0">Berättarordning:</p>
+                    <p *ngIf="episode.first && episode.third" class="d-flex align-items-center">
+                      <span class="d-inline-block">1. {{ episode.first }}</span>
+                      <span class="mx-3 d-inline-block">2. {{episode.second}}</span>
+                      <span class="d-inline-block">3. {{episode.third}}</span>
+                    </p>
+
+                    <!-- Episode gäst -->
+                    <ng-container *ngIf="episode.guest !== ''">
+                      <p class="text-muted mb-0">Gäst:</p>
+                      <p>{{episode.guest}}</p>
+                    </ng-container>
+
+                    <!-- Episode berättelser -->
+                    <p *ngIf="episode.stories.length" class="text-muted mb-0">Berättelser:</p>
+                    <p *ngIf="episode.stories.length" class="mb-0">
+                      <span *ngFor="let story of episode.stories" class="d-block my-2">
+                        {{story}}
+                      </span>
+                    </p>
+
+                    <!-- Episode försnack och eftersnack -->
+                    <ng-container *ngIf="episode.pretalk !== '\r' && episode.pretalk !== ''">
+                      <p class="text-muted mb-0">Försnack:</p>
+                      <p class="max-height-1">{{episode.pretalk}}</p>
+                    </ng-container>
+
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed" [ngClass]="{'text-muted': !firstArr && !secondArr && !thirdArr}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            <h3>Vem var headliner?</h3>
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body" [ngClass]="{'text-muted': !firstArr && !secondArr && !thirdArr}">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <h4 class="py-2">1. Först ut är...</h4>
+                <ng-container *ngIf="!firstArr">
+                  <p>Något gick fel...</p>
+                </ng-container>
+                <ng-container *ngIf="firstArr">
+                  <ng-container *ngFor="let item of firstArr[0]; index as index">
+                    <p *ngIf="firstArr[0][index]">{{firstArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{firstArr[1][index]}}</b></p>
+                  </ng-container>
+                </ng-container>
+              </div>
+              <div class="col-12 col-md-4">
+                <h4 class="py-2">2. Andra storyn får vi från...</h4>
+                <ng-container *ngIf="!secondArr">
+                  <p>Något gick fel...</p>
+                </ng-container>
+                <ng-container *ngIf="secondArr">
+                  <ng-container *ngFor="let item of secondArr[0]; index as index">
+                    <p *ngIf="secondArr[0][index]">{{secondArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{secondArr[1][index]}}</b></p>
+                  </ng-container>
+                </ng-container>
+              </div>
+              <div class="col-12 col-md-4">
+                <h4 class="py-2">3. Sist men inte minst...</h4>
+                <ng-container *ngIf="!thirdArr">
+                  <p>Något gick fel...</p>
+                </ng-container>
+                <ng-container *ngIf="thirdArr">
+                  <ng-container *ngFor="let item of thirdArr[0]; index as index">
+                    <p *ngIf="thirdArr[0][index]">{{thirdArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{thirdArr[1][index]}}</b></p>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            <h3>Beskrivning av denna sidan</h3>
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <h5>Om denna sidan</h5>
+                <p>Här visar jag en massa meta-data som jag har samlat på från <a href="https://underproduktion.se/kafferepet/">Kafferepet podcast</a>.</p>
+                <p>Exempel på information som du kan hitta här:</p>
+                <br>
+                <ul>
+                  <li>Vem som berättade första, andra och tredje historien.</li>
+                  <li>Vilken story vann i vilket avsnitt, och tid för storyn som vann.</li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-6">
+                <h5>Om podden</h5>
+                <p>
+                  Komikerna Nisse Hallberg, Albin Olsson och Johanna Hurtig Wagrell läser upp skvaller och skrönor från hela Sverige med omnejd. Avsnitt släpps varje fredag.
+                  <br>Har du en bra historia på lager? Maila den till <a href="mailto:kafferepetpod@gmail.com">kafferepetpod@gmail.com</a>.
+                </p>
+                <p>
+                  Missa inte den exklusiva systerpodden <a href="www.underproduktion.se/cigarrummet">Cigarrummet <i class="far fa-external-link"></i></a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 pt-5 text-center">
+      <a class="btn btn-primary btn-sm break-word" href="https://docs.google.com/spreadsheets/d/1y2UmcW5MwPeuCBM2mkmj4WbabOJ1vKmRtyUrxugyXSs/edit?usp=sharing">
+        Google Sheets link - <small>där datan kommer från</small>
+      </a>
+    </div>
+  </div>
+  <div class="row py-5">
+    <a class="col-12 text-center" target="_blank" href="https://philipdev.se">
+      <svg style="height: 30px" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898.19 898.19"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:40px;}</style></defs><path class="cls-1" d="M537.09,357.35v80.32a54.51,54.51,0,0,1-16,38.54L428.54,568.8a54.53,54.53,0,0,1-38.55,16H341.61a54.52,54.52,0,0,1-54.52-54.52v-266a54.51,54.51,0,0,1,54.52-54.51h47.9a54.52,54.52,0,0,1,38.55,16l93.07,93.07A54.52,54.52,0,0,1,537.09,357.35Zm-125,352.42H514.51a54.53,54.53,0,0,0,38.55-16l93.07-93.07a54.51,54.51,0,0,0,16-38.54V357.35a54.52,54.52,0,0,0-16-38.55l-93.07-93.07a54.52,54.52,0,0,0-38.55-16H389.09m-102,500v-180"/></svg>
+      <br>
+      philipdev.se
+    </a>
+  </div>
+</div>

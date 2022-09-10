@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "kaffe-repet-podcast",
+    "public": "dist/kafferepet-podcast",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

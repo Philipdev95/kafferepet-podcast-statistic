@@ -1,0 +1,62 @@
+/* SCSS HEX */
+$light: #dcdcd6ff;
+$orange: #db9c30ff;
+$brown-light: #a77148ff;
+$brown-dark: #623a1dff;
+$dark: #0c0910ff;
+/* SCSS RGB */
+$light-rgb: rgb(14, 14, 7);
+$orange-rgb: rgba(219, 156, 48, 1);
+$brown-light-rgb: rgba(167, 113, 72, 1);
+$brown-dark-rgb: rgba(98, 58, 29, 1);
+$dark-rgb: rgba(12, 9, 16, 1);
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-right: linear-gradient(90deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-bottom: linear-gradient(180deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-left: linear-gradient(270deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-top-right: linear-gradient(45deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-bottom-right: linear-gradient(135deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-top-left: linear-gradient(225deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-bottom-left: linear-gradient(315deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+$gradient-radial: radial-gradient(#dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
+
+table * {
+  color: $orange;
+}
+
+.text-dark {
+  color: $dark;
+}
+.text-black {
+  color: $dark;
+}
+.text-light {
+  color: $light;
+}
+.text-primary {
+  color: $orange!important;
+}
+
+.bg-dark {
+  background-color: $dark!important;
+}
+.bg-primary {
+  background-color: $orange!important;
+}
+.bg-brown {
+  background-color: $brown-dark!important;
+}
+
+.max-height-1 {
+  max-height: 157px;
+  overflow-y: auto;
+}
+.max-height-2 {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.max-height-2 {
+  max-height: 300px;
+  overflow-y: auto;
+}
