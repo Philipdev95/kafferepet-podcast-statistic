@@ -30,19 +30,41 @@ export class AppComponent implements OnInit {
     xhr.onload = function () {
       let x = xhr.responseText.split('\n')
       for (let i = 0; i < x.length; i++) {
+        function returnWinnerStoryIndex(stories:any, winnerstory:any) {
+          for (let j = 0; j < stories.length; j++) {
+            if (stories[j].includes(winnerstory) && winnerstory) {
+              return j;
+            }
+          }
+          return -1;
+        }
         if (x[i].split('\t')[0] !== 'Avsnittsnamn') {
+          let name = x[i]?.split('\t')[0];
+          let winnerstory = x[i]?.split('\t')[1];
+          let winnerstorytime = x[i]?.split('\t')[2];
+          let winnerstorydesc = x[i]?.split('\t')[3];
+          let stories = x[i]?.split('\t')[4].split('|');
+          let first = x[i]?.split('\t')[5];
+          let second = x[i]?.split('\t')[6];
+          let third = x[i]?.split('\t')[7];
+          let guest = x[i]?.split('\t')[8];
+          let pretalk = x[i]?.split('\t')[9];
+          for (let j = 0; j < stories.length; j++) {
+            stories[j].includes(winnerstory)
+          }
           try {
             arr.push({
-              name: x[i]?.split('\t')[0],
-              winnerstory: x[i]?.split('\t')[1],
-              winnerstorytime: x[i]?.split('\t')[2],
-              winnerstorydesc: x[i]?.split('\t')[3],
-              stories: x[i]?.split('\t')[4].split('|'),
-              first: x[i]?.split('\t')[5],
-              second: x[i]?.split('\t')[6],
-              third: x[i]?.split('\t')[7],
-              guest: x[i]?.split('\t')[8],
-              pretalk: x[i]?.split('\t')[9],
+              name: name,
+              winnerstory: winnerstory,
+              winnerstorytime: winnerstorytime,
+              winnerstorydesc: winnerstorydesc,
+              winnerstoryindex: returnWinnerStoryIndex(stories, winnerstory),
+              stories: stories,
+              first: first,
+              second: second,
+              third: third,
+              guest: guest,
+              pretalk: pretalk,
               show: true
             })
           }
@@ -52,7 +74,8 @@ export class AppComponent implements OnInit {
               winnerstory: '',
               winnerstorytime: '',
               winnerstorydesc: '',
-              stories: [],
+              winnerstoryindex: -1,
+              stories: ['Inget ännu.'],
               first: '',
               second: '',
               third: '',
@@ -60,7 +83,7 @@ export class AppComponent implements OnInit {
               pretalk: '',
               show: true
             })
-            console.log(err)
+            console.log(err);
           }
           firstArr.push(x[i].split('\t')[5])
           secondArr.push(x[i].split('\t')[6])
@@ -88,12 +111,19 @@ export class AppComponent implements OnInit {
     }, 200);
   }
 
-  containsSearch(nameSearch:any, name:any) {
-    console.log(nameSearch)
-    console.log(name)
-    if (nameSearch) {
-      return true
+  numberIsDevisibleByThree(number:any) {
+    return number % 3 === 0;
+  }
+  numberIsDevisibleByTwo(number:any) {
+    return number % 2 === 0;
+  }
+  numberisdevisablebyone(number:any) {
+    return number % 1 === 0;
+  }
 
+  containsSearch(nameSearch:any, name:any) {
+    if (nameSearch) {
+      return true;
     }
     return true;
   }

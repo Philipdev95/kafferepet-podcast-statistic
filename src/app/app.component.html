@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container bg-dark text-white py-3">
+<div class="container bg-dark text-light py-3">
   <div class="row">
 
     <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -58,10 +58,10 @@
                     </ng-container>
 
                     <!-- Episode berättelser -->
-                    <p *ngIf="episode.stories.length" class="text-muted mb-0">Berättelser:</p>
+                    <p *ngIf="episode.stories.length" class="text-muted mb-0">Berättelser ({{episode.stories.length}}):</p>
                     <p *ngIf="episode.stories.length" class="mb-0">
-                      <span *ngFor="let story of episode.stories" class="d-block my-2">
-                        {{story}}
+                      <span *ngFor="let story of episode.stories; index as ind" class="d-block my-2">
+                        <span class="text-muted" style="margin-right: 8px">{{ind + 1}}.</span>{{story}}
                       </span>
                     </p>
 
