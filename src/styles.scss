@@ -21,6 +21,11 @@ $gradient-top-left: linear-gradient(225deg, #dcdcd6ff, #db9c30ff, #a77148ff, #62
 $gradient-bottom-left: linear-gradient(315deg, #dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
 $gradient-radial: radial-gradient(#dcdcd6ff, #db9c30ff, #a77148ff, #623a1dff, #0c0910ff);
 
+.input-group-text {
+  background: #313132!important;
+  color: #fff!important;
+}
+
 table * {
   color: $orange;
 }
