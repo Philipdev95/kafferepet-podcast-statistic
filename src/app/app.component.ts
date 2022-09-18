@@ -16,8 +16,6 @@ export class AppComponent implements OnInit {
   public firstArr: any
   public secondArr: any
   public thirdArr: any;
-  public nameSearch = '';
-  public names = [{name: 'Adele', show: true},{name: 'Agnes', show: true},{name: 'Billy', show: true},{name: 'Bob', show: true},{name: 'Calvin', show: true},{name: 'Christina', show: true},{name: 'Cindy', show: true}]
   constructor(private httpClient: HttpClient, private ngZone: NgZone) {}
 
   ngOnInit() {
@@ -44,9 +42,9 @@ export class AppComponent implements OnInit {
           let winnerstorytime = x[i]?.split('\t')[2];
           let winnerstorydesc = x[i]?.split('\t')[3];
           let stories = x[i]?.split('\t')[4].split('|');
-          let first = x[i]?.split('\t')[5];
-          let second = x[i]?.split('\t')[6];
-          let third = x[i]?.split('\t')[7];
+          let first = x[i]?.split('\t')[5].trim();
+          let second = x[i]?.split('\t')[6].trim();
+          let third = x[i]?.split('\t')[7].trim();
           let guest = x[i]?.split('\t')[8];
           let pretalk = x[i]?.split('\t')[9];
           for (let j = 0; j < stories.length; j++) {
@@ -85,9 +83,9 @@ export class AppComponent implements OnInit {
             })
             console.log(err);
           }
-          firstArr.push(x[i].split('\t')[5])
-          secondArr.push(x[i].split('\t')[6])
-          thirdArr.push(x[i].split('\t')[7])
+          firstArr.push(x[i].split('\t')[5].trim());
+          secondArr.push(x[i].split('\t')[6].trim());
+          thirdArr.push(x[i].split('\t')[7].trim());
         }
       }
     };
