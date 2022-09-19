@@ -94,7 +94,10 @@
                 </ng-container>
                 <ng-container *ngIf="firstArr">
                   <ng-container *ngFor="let item of firstArr[0]; index as index">
-                    <p *ngIf="firstArr[0][index]" class="d-flex justify-content-between align-items-center"><span>{{firstArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{firstArr[1][index]}}</b></span><span class="text-muted">{{((firstArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span></p>
+                    <p *ngIf="firstArr[0][index]" class="d-flex justify-content-between align-items-center">
+                      <span>{{firstArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{firstArr[1][index]}}</b></span>
+                      <span class="text-muted">{{((firstArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span>
+                    </p>
                   </ng-container>
                 </ng-container>
               </div>
@@ -105,7 +108,10 @@
                 </ng-container>
                 <ng-container *ngIf="secondArr">
                   <ng-container *ngFor="let item of secondArr[0]; index as index">
-                    <p *ngIf="secondArr[0][index]" class="d-flex justify-content-between align-items-center"><span>{{secondArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{secondArr[1][index]}}</b></span><span class="text-muted">{{((secondArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span></p>
+                    <p *ngIf="secondArr[0][index]" class="d-flex justify-content-between align-items-center">
+                      <span>{{secondArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{secondArr[1][index]}}</b></span>
+                      <span class="text-muted">{{((secondArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span>
+                    </p>
                   </ng-container>
                 </ng-container>
               </div>
@@ -116,7 +122,10 @@
                 </ng-container>
                 <ng-container *ngIf="thirdArr">
                   <ng-container *ngFor="let item of thirdArr[0]; index as index">
-                    <p *ngIf="thirdArr[0][index]" class="d-flex justify-content-between align-items-center"><span>{{thirdArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{thirdArr[1][index]}}</b></span><span class="text-muted">{{((thirdArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span></p>
+                    <p *ngIf="thirdArr[0][index]" class="d-flex justify-content-between align-items-center">
+                      <span>{{thirdArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{thirdArr[1][index]}}</b></span>
+                      <span class="text-muted">{{((thirdArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span>
+                    </p>
                   </ng-container>
                 </ng-container>
               </div>
