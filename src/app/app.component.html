@@ -4,11 +4,11 @@
 
     <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingOne">
+        <h3 class="accordion-header" id="flush-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            <h2>Alla avsnitt och vinnarstories</h2>
+            <h3>Alla avsnitt och vinnarstories</h3>
           </button>
-        </h2>
+        </h3>
         <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
             <div class="row">
@@ -79,11 +79,11 @@
         </div>
       </div>
       <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingTwo">
+        <h3 class="accordion-header" id="flush-headingTwo">
           <button class="accordion-button collapsed" [ngClass]="{'text-muted': !firstArr && !secondArr && !thirdArr}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
             <h3>Vem var headliner?</h3>
           </button>
-        </h2>
+        </h3>
         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body" [ngClass]="{'text-muted': !firstArr && !secondArr && !thirdArr}">
             <div class="row">
@@ -94,7 +94,7 @@
                 </ng-container>
                 <ng-container *ngIf="firstArr">
                   <ng-container *ngFor="let item of firstArr[0]; index as index">
-                    <p *ngIf="firstArr[0][index]">{{firstArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{firstArr[1][index]}}</b></p>
+                    <p *ngIf="firstArr[0][index]" class="d-flex justify-content-between align-items-center"><span>{{firstArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{firstArr[1][index]}}</b></span><span class="text-muted">{{((firstArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span></p>
                   </ng-container>
                 </ng-container>
               </div>
@@ -105,7 +105,7 @@
                 </ng-container>
                 <ng-container *ngIf="secondArr">
                   <ng-container *ngFor="let item of secondArr[0]; index as index">
-                    <p *ngIf="secondArr[0][index]">{{secondArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{secondArr[1][index]}}</b></p>
+                    <p *ngIf="secondArr[0][index]" class="d-flex justify-content-between align-items-center"><span>{{secondArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{secondArr[1][index]}}</b></span><span class="text-muted">{{((secondArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span></p>
                   </ng-container>
                 </ng-container>
               </div>
@@ -116,7 +116,7 @@
                 </ng-container>
                 <ng-container *ngIf="thirdArr">
                   <ng-container *ngFor="let item of thirdArr[0]; index as index">
-                    <p *ngIf="thirdArr[0][index]">{{thirdArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{thirdArr[1][index]}}</b></p>
+                    <p *ngIf="thirdArr[0][index]" class="d-flex justify-content-between align-items-center"><span>{{thirdArr[0][index]}} <b class="mx-2" style="font-size: 120%;">{{thirdArr[1][index]}}</b></span><span class="text-muted">{{((thirdArr[1][index]/episodeArray.length) * 100).toFixed(1) + '%'}}</span></p>
                   </ng-container>
                 </ng-container>
               </div>
@@ -124,37 +124,27 @@
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingThree">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-            <h3>Beskrivning av denna sidan</h3>
-          </button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">
-            <div class="row">
-              <div class="col-12 col-md-6">
-                <h5>Om denna sidan</h5>
-                <p>Här visar jag en massa meta-data som jag har samlat på från <a href="https://underproduktion.se/kafferepet/">Kafferepet podcast</a>.</p>
-                <p>Exempel på information som du kan hitta här:</p>
-                <br>
-                <ul>
-                  <li>Vem som berättade första, andra och tredje historien.</li>
-                  <li>Vilken story vann i vilket avsnitt, och tid för storyn som vann.</li>
-                </ul>
-              </div>
-              <div class="col-12 col-md-6">
-                <h5>Om podden</h5>
-                <p>
-                  Komikerna Nisse Hallberg, Albin Olsson och Johanna Hurtig Wagrell läser upp skvaller och skrönor från hela Sverige med omnejd. Avsnitt släpps varje fredag.
-                  <br>Har du en bra historia på lager? Maila den till <a href="mailto:kafferepetpod@gmail.com">kafferepetpod@gmail.com</a>.
-                </p>
-                <p>
-                  Missa inte den exklusiva systerpodden <a href="www.underproduktion.se/cigarrummet">Cigarrummet <i class="far fa-external-link"></i></a>.
-                </p>
-              </div>
-            </div>
-          </div>
+    </div>
+    <div class="col-12 pt-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <h4>Om denna sidan</h4>
+          <p>Här visar jag en massa meta-data som jag har samlat på från <a href="https://underproduktion.se/kafferepet/">Kafferepet podcast</a>.</p>
+          <p>Exempel på information som du kan hitta här:</p>
+          <ul>
+            <li>Vem som berättade första, andra och tredje historien.</li>
+            <li>Vilken story vann i vilket avsnitt, och tid för storyn som vann.</li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-6">
+          <h4>Om podden</h4>
+          <p>
+            Komikerna Nisse Hallberg, Albin Olsson och Johanna Hurtig Wagrell läser upp skvaller och skrönor från hela Sverige med omnejd. Avsnitt släpps varje fredag.
+            <br>Har du en bra historia på lager? Maila den till <a href="mailto:kafferepetpod@gmail.com">kafferepetpod@gmail.com</a>.
+          </p>
+          <p>
+            Missa inte den exklusiva systerpodden <a href="www.underproduktion.se/cigarrummet">Cigarrummet <i class="far fa-external-link"></i></a>.
+          </p>
         </div>
       </div>
     </div>

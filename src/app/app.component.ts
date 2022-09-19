@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   public firstArr: any
   public secondArr: any
   public thirdArr: any;
+  public episodeCount = 0
   constructor(private httpClient: HttpClient, private ngZone: NgZone) {}
 
   ngOnInit() {
@@ -86,6 +87,7 @@ export class AppComponent implements OnInit {
           firstArr.push(x[i].split('\t')[5].trim());
           secondArr.push(x[i].split('\t')[6].trim());
           thirdArr.push(x[i].split('\t')[7].trim());
+          
         }
       }
     };
@@ -128,10 +130,10 @@ export class AppComponent implements OnInit {
 
   public send(val:any) {
     for (let i = 0; this.episodeArray.length; i++) {
-      const episode = JSON.stringify(this.episodeArray[i])
-      const x = val.target.value.toLowerCase()
+      const episode = JSON.stringify(this.episodeArray[i]);
+      const x = val.target.value.toLowerCase();
       if (!episode) {
-        return
+        return;
       }
       if (episode.toLowerCase().includes(x)) {
         this.episodeArray[i].show = true;
@@ -142,15 +144,15 @@ export class AppComponent implements OnInit {
   }
 
   calculateOccuranceInArrayAndReturnObjectWithTwoArrays(countThisArray:any): any {
-    var counts:any = [ [], [] ]
+    var counts:any = [ [], [] ];
     for (var i = 0; i < countThisArray.length; i++) {
       if (!counts[0].includes(countThisArray[i])) {
-        counts[0].push(countThisArray[i])
-        counts[1].push(1)
+        counts[0].push(countThisArray[i]);
+        counts[1].push(1);
       } else {
-        counts[1][counts[0].indexOf(countThisArray[i])]++
+        counts[1][counts[0].indexOf(countThisArray[i])]++;
       }
     }
-    return counts
+    return counts;
   }
 }
