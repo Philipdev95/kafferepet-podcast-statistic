@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     let firstArr: any = []
     let secondArr: any = []
     let thirdArr: any = []
+    const winningReaders = []
     var xhr = new XMLHttpRequest();
     xhr.open("GET", this.serverUrl);
     xhr.onload = function () {
@@ -39,19 +40,12 @@ export class AppComponent implements OnInit {
         }
         function findWinnerReader(winnerStoryIndex:number, first:string, second:string, third:string) {
           const hosts = [first, second, third];
-          // Check which host read the winning story based on the index
-          if (winnerStoryIndex % 3 === 1) {
-            let reader = hosts[0]
+          const readerIndex = winnerStoryIndex % 3;
+
+          if (readerIndex >= 0 && readerIndex < 3) {
+            const reader = hosts[readerIndex];
             winningReaders.push(reader);
-            return reader; // 1st, 4th, 7th, ...
-          } else if (winnerStoryIndex % 3 === 2) {
-            let reader = hosts[1]
-            winningReaders.push(reader);
-            return reader; // 2nd, 5th, 8th, ...
-          } else if (winnerStoryIndex % 3 === 0) {
-            let reader = hosts[2]
-            winningReaders.push(reader);
-            return reader; // 3rd, 6th, 9th, ...
+            return reader;
           } else {
             return null;
           }
