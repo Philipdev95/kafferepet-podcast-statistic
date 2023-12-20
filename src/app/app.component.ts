@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'zone.js';
 
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   public secondArr: any
   public thirdArr: any;
   public episodeCount = 0
-  constructor(private httpClient: HttpClient, private ngZone: NgZone) {}
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
     let arr: any = []
