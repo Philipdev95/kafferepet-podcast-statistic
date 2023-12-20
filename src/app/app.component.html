@@ -34,7 +34,7 @@
 
                     <!-- Episode vinnarstory info -->
                     <ng-container *ngIf="episode.winnerstory !== '\r'">
-                      <span class="text-muted">Vinnarstory:</span>
+                      <span class="text-muted">Vinnarstory<span class="text-muted" *ngIf="episode.winnerReader">(läst av {{ episode.winnerReader}})</span>:</span>
                       <h5 class="mb-1">
                         {{ episode.winnerstory + ' ' + episode.winnerstorytime }}
                       </h5>

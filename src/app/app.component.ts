@@ -37,6 +37,25 @@ export class AppComponent implements OnInit {
           }
           return -1;
         }
+        function findWinnerReader(winnerStoryIndex:number, first:string, second:string, third:string) {
+          const hosts = [first, second, third];
+          // Check which host read the winning story based on the index
+          if (winnerStoryIndex % 3 === 1) {
+            let reader = hosts[0]
+            winningReaders.push(reader);
+            return reader; // 1st, 4th, 7th, ...
+          } else if (winnerStoryIndex % 3 === 2) {
+            let reader = hosts[1]
+            winningReaders.push(reader);
+            return reader; // 2nd, 5th, 8th, ...
+          } else if (winnerStoryIndex % 3 === 0) {
+            let reader = hosts[2]
+            winningReaders.push(reader);
+            return reader; // 3rd, 6th, 9th, ...
+          } else {
+            return null;
+          }
+        }
         if (x[i].split('\t')[0] !== 'Avsnittsnamn') {
           let name = x[i]?.split('\t')[0];
           let winnerstory = x[i]?.split('\t')[1];
@@ -49,7 +68,9 @@ export class AppComponent implements OnInit {
           let guest = x[i]?.split('\t')[8];
           let pretalk = x[i]?.split('\t')[9];
           for (let j = 0; j < stories.length; j++) {
-            stories[j].includes(winnerstory)
+            let story = stories[j];
+            stories[j] = story.trim();
+            story.includes(winnerstory)
           }
           try {
             arr.push({
@@ -57,7 +78,7 @@ export class AppComponent implements OnInit {
               winnerstory: winnerstory,
               winnerstorytime: winnerstorytime,
               winnerstorydesc: winnerstorydesc,
-              winnerstoryindex: returnWinnerStoryIndex(stories, winnerstory),
+              winnerReader: findWinnerReader(returnWinnerStoryIndex(stories, winnerstory), first, second, third),
               stories: stories,
               first: first,
               second: second,
@@ -73,7 +94,7 @@ export class AppComponent implements OnInit {
               winnerstory: '',
               winnerstorytime: '',
               winnerstorydesc: '',
-              winnerstoryindex: -1,
+              winnerReader: '',
               stories: ['Inget ännu.'],
               first: '',
               second: '',
@@ -109,16 +130,6 @@ export class AppComponent implements OnInit {
         this.thirdArr = this.calculateOccuranceInArrayAndReturnObjectWithTwoArrays(thirdArr)
       }
     }, 200);
-  }
-
-  numberIsDevisibleByThree(number:any) {
-    return number % 3 === 0;
-  }
-  numberIsDevisibleByTwo(number:any) {
-    return number % 2 === 0;
-  }
-  numberisdevisablebyone(number:any) {
-    return number % 1 === 0;
   }
 
   containsSearch(nameSearch:any, name:any) {
