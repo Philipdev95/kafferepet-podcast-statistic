@@ -153,6 +153,18 @@ export class AppComponent implements OnInit {
         counts[1][counts[0].indexOf(countThisArray[i])]++;
       }
     }
+
+    // Sort the arrays based on the count (descending order)
+    counts[0].sort(function (a: any, b: any) {
+      var indexA = counts[0].indexOf(a);
+      var indexB = counts[0].indexOf(b);
+      return counts[1][indexB] - counts[1][indexA];
+    });
+
+    counts[1].sort(function (a: any, b: any) {
+      return b - a;
+    });
+
     return counts;
   }
 }
