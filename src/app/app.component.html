@@ -6,7 +6,7 @@
       <div class="accordion-item">
         <h3 class="accordion-header" id="flush-headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            <h3>Alla avsnitt och vinnarstories</h3>
+            Alla avsnitt och vinnarstories
           </button>
         </h3>
         <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -81,7 +81,7 @@
       <div class="accordion-item">
         <h3 class="accordion-header" id="flush-headingTwo">
           <button class="accordion-button collapsed" [ngClass]="{'text-muted': !firstArr && !secondArr && !thirdArr}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-            <h3>Vem var headliner?</h3>
+            Vem var headliner?
           </button>
         </h3>
         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -134,6 +134,39 @@
                     </p>
                   </ng-container>
                 </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed"  data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            Vem har läst flest vinnarstories?
+          </button>
+        </h3>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex w-100 align-items-center" *ngFor="let reader of winningReaders[0]; index as index">
+                  <app-icon [iconName]="reader" [heightPX]="'30'"></app-icon>
+                  <ng-container *ngIf="index === 0">
+                    <p class="mb-0 py-2">
+                      <b>
+                        {{reader}} - {{winningReaders[1][index]}}st
+                      </b>
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="index !== 0">
+                    <p class="mb-0 py-2">
+                      {{reader}} - {{winningReaders[1][index]}}st
+                    </p>
+                  </ng-container>
+                </div>
+                <!-- <app-icon [iconName]="'Nisse'" [heightPX]="'30'"></app-icon>
+                <app-icon [iconName]="'Albin'" [heightPX]="'30'"></app-icon>
+                <app-icon [iconName]="'Johanna'" [heightPX]="'30'"></app-icon> -->
               </div>
             </div>
           </div>

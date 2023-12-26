@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   public firstArr: any
   public secondArr: any
   public thirdArr: any;
+  public winningReaders: string[] = [];
   public episodeCount = 0
   constructor(private httpClient: HttpClient) {}
 
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
     let firstArr: any = []
     let secondArr: any = []
     let thirdArr: any = []
-    const winningReaders = []
+    let winningReaders: string[] = []
     var xhr = new XMLHttpRequest();
     xhr.open("GET", this.serverUrl);
     xhr.onload = function () {
@@ -122,6 +123,7 @@ export class AppComponent implements OnInit {
         this.firstArr = this.calculateOccuranceInArrayAndReturnObjectWithTwoArrays(firstArr)
         this.secondArr = this.calculateOccuranceInArrayAndReturnObjectWithTwoArrays(secondArr)
         this.thirdArr = this.calculateOccuranceInArrayAndReturnObjectWithTwoArrays(thirdArr)
+        this.winningReaders = this.calculateOccuranceInArrayAndReturnObjectWithTwoArrays(winningReaders);
       }
     }, 200);
   }
