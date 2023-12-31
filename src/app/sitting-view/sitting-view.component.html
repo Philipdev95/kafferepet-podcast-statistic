@@ -1,0 +1,6 @@
+<p class="text-muted mb-0">Sittplatser:</p>
+<div class="sitting-area">
+  <ng-container *ngFor="let sitting of arrayData">
+    <app-icon [heightPX]="'30'" [iconName]="sitting.name" [className]="sitting.position"></app-icon>
+  </ng-container>
+</div>

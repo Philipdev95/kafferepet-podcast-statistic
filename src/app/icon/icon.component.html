@@ -1,6 +1,6 @@
 <img *ngIf="iconName === 'albin' || iconName === 'nisse' || iconName === 'johanna'"
-[style]="'height:' + heightPX + 'px; filter: invert(1); margin-right: 8px;'"
+[style]="'height:' + heightPX + 'px; filter: invert(1);'"
 [src]="'../assets/icons/icon-' + iconName + '.png'" />
 <img *ngIf="iconName !== 'albin' && iconName !== 'nisse' && iconName !== 'johanna'"
-[style]="'height:' + heightPX + 'px; filter: invert(1); margin-right: 8px;'"
+[style]="'height:' + heightPX + 'px; filter: invert(1);'"
 [src]="'../assets/icons/icon-default-face.png'" />

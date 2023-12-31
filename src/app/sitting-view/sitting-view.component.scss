@@ -1,0 +1,82 @@
+.sitting-area {
+  border: solid 1px #fff;
+  margin: 20px auto 10px;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  app-icon {
+    img {
+      margin-right: 0!important;
+    }
+  }
+}
+@mixin positioning() {
+  position: absolute;
+}
+@mixin right() {
+  right: 0;
+  left: unset;
+}
+@mixin left() {
+  left: 0;
+  right: unset;
+}
+@mixin center() {
+  left: 50%;
+  transform: translateX(-50%);
+}
+@mixin middle() {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: unset;
+}
+@mixin top() {
+  top: 0;
+  bottom: unset;
+}
+@mixin bot() {
+  top: unset;
+  bottom: 0;
+}
+.N {
+  @include positioning;
+  @include center;
+  @include top;
+}
+.NO {
+  @include positioning;
+  @include right;
+  @include top;
+}
+.O {
+  @include positioning;
+  @include right;
+  @include middle;
+}
+.SO {
+  @include positioning;
+  @include right;
+  @include bot;
+}
+.S {
+  @include positioning;
+  @include center;
+  @include bot;
+}
+.SV {
+  @include positioning;
+  @include left;
+  @include bot;
+}
+.V {
+  @include positioning;
+  @include left;
+  @include middle;
+}
+.NV {
+  @include positioning;
+  @include left;
+  @include top;
+}
+

@@ -62,6 +62,7 @@ export class AppComponent implements OnInit {
           let third = x[i]?.split('\t')[7].trim();
           let guest = x[i]?.split('\t')[8];
           let pretalk = x[i]?.split('\t')[9];
+          let sitting = x[i]?.split('\t')[10];
           for (let j = 0; j < stories.length; j++) {
             let story = stories[j];
             stories[j] = story.trim();
@@ -80,6 +81,7 @@ export class AppComponent implements OnInit {
               third: third,
               guest: guest,
               pretalk: pretalk,
+              sitting: sitting,
               show: true
             })
           }
@@ -96,6 +98,7 @@ export class AppComponent implements OnInit {
               third: '',
               guest: '',
               pretalk: '',
+              sitting: '',
               show: true
             })
             console.log(err);
