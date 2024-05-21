@@ -1,7 +1,9 @@
 <app-header></app-header>
 <div class="container bg-dark text-light py-3">
   <div class="row">
-
+    <div class="col-12">
+      <p>Du kan nu klicka på en story i ett avsnitt för att dölja/visa beskrivningen för just den storyn. Funkar bara för de storys som vi har beskrivningen till. Leta efter denna ikonen nedan: <i class="fa-light fa-book-open"></i></p>
+    </div>
     <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
         <h3 class="accordion-header" id="flush-headingOne">
@@ -58,12 +60,33 @@
                     </ng-container>
 
                     <!-- Episode berättelser -->
-                    <p *ngIf="episode.stories.length" class="text-muted mb-0">Berättelser ({{episode.stories.length}}):</p>
-                    <p *ngIf="episode.stories.length" class="mb-0">
-                      <span *ngFor="let story of episode.stories; index as ind" class="d-block my-2">
-                        <span class="text-muted" style="margin-right: 8px">{{ind + 1}}.</span>{{story}}
-                      </span>
-                    </p>
+                    <ng-container *ngIf="episode.stories.length">
+                      <p class="text-muted mb-0">Berättelser ({{episode.stories.length}}):</p>
+                      <p class="mb-0">
+                        <ng-container *ngFor="let story of episode.stories; index as ind">
+                          <ng-container *ngIf="!story.desc">
+                            <p class="m-0 px-3 py-1">
+                              <span class="text-muted" style="margin-right: 8px">{{ind + 1}}.</span>{{story.name}}
+                            </p>
+                          </ng-container>
+                          <ng-container *ngIf="story.desc">
+                            <button class="btn btn-dark d-block" type="button" style="text-align: left; position:relative;"  data-bs-toggle="collapse" [attr.data-bs-target]="'#' + story.id" aria-expanded="true">
+                              <i *ngIf="story.desc" class="fa-light fa-book-open" style="position: absolute;
+                              right: 100%;
+                              top: 50%;
+                              transform: translateY(-50%);"></i>
+                              <span class="text-muted" style="margin-right: 8px">{{ind + 1}}.</span>{{story.name}}
+                            </button>
+                            
+                            <div *ngIf="story.desc" id="{{story.id}}" class="accordion-collapse collapse">
+                              <div class="accordion-body text-muted">
+                                {{story.desc}}
+                              </div>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                      </p>
+                    </ng-container>
 
                     <!-- Episode försnack och eftersnack -->
                     <ng-container *ngIf="episode.pretalk !== '\r' && episode.pretalk !== ''">

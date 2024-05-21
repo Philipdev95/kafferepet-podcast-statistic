@@ -56,25 +56,44 @@ export class AppComponent implements OnInit {
           let winnerstory = x[i]?.split('\t')[1];
           let winnerstorytime = x[i]?.split('\t')[2];
           let winnerstorydesc = x[i]?.split('\t')[3];
-          let stories = x[i]?.split('\t')[4].split('|');
+          let storiesArray = x[i]?.split('\t')[4].split('|');
           let first = x[i]?.split('\t')[5].trim();
           let second = x[i]?.split('\t')[6].trim();
           let third = x[i]?.split('\t')[7].trim();
           let guest = x[i]?.split('\t')[8];
           let pretalk = x[i]?.split('\t')[9];
           let sitting = x[i]?.split('\t')[10];
-          for (let j = 0; j < stories.length; j++) {
-            let story = stories[j];
-            stories[j] = story.trim();
-            story.includes(winnerstory)
+          let storiesDescriptions = x[i]?.split('\t')[11];
+          let stories = [];
+
+          for (let j = 0; j < storiesArray.length; j++) {
+            let story = storiesArray[j];
+            stories[j] = {
+              name: story.trim(),
+              id: 'sid-' + story.trim().toLowerCase().replace(/[^a-z0-9_-]/g, ''),
+              desc: ''
+            };
+            story.includes(winnerstory);
           }
+          if (storiesDescriptions.includes('|')) {
+            for (let j = 0; j < storiesDescriptions.length; j++) {
+              let storyDesc = storiesDescriptions[j]
+              console.log(storyDesc);
+            }
+          } else if (storiesDescriptions.trim()) {
+            console.log(storiesDescriptions);
+            let descObj = storiesDescriptions.split(':');
+            stories[parseInt(descObj[0]) - 1].desc = descObj[1].trim();
+            console.log(stories);
+          }
+
           try {
             arr.push({
               name: name,
               winnerstory: winnerstory,
               winnerstorytime: winnerstorytime,
               winnerstorydesc: winnerstorydesc,
-              winnerReader: findWinnerReader(returnWinnerStoryIndex(stories, winnerstory), first, second, third),
+              winnerReader: findWinnerReader(returnWinnerStoryIndex(storiesArray, winnerstory), first, second, third),
               stories: stories,
               first: first,
               second: second,
