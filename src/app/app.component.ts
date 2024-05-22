@@ -76,15 +76,15 @@ export class AppComponent implements OnInit {
             story.includes(winnerstory);
           }
           if (storiesDescriptions.includes('|')) {
-            for (let j = 0; j < storiesDescriptions.length; j++) {
-              let storyDesc = storiesDescriptions[j]
-              console.log(storyDesc);
+            let storyDescArr = storiesDescriptions.split('|');
+            for (let j = 0; j < storyDescArr.length; j++) {
+              let storyDesc = storyDescArr[j];
+              let descObj = storyDesc.split(':');
+              stories[parseInt(descObj[0]) - 1].desc = descObj[1].trim();
             }
           } else if (storiesDescriptions.trim()) {
-            console.log(storiesDescriptions);
             let descObj = storiesDescriptions.split(':');
             stories[parseInt(descObj[0]) - 1].desc = descObj[1].trim();
-            console.log(stories);
           }
 
           try {

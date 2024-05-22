@@ -71,10 +71,7 @@
                           </ng-container>
                           <ng-container *ngIf="story.desc">
                             <button class="btn btn-dark d-block" type="button" style="text-align: left; position:relative;"  data-bs-toggle="collapse" [attr.data-bs-target]="'#' + story.id" aria-expanded="true">
-                              <i *ngIf="story.desc" class="fa-light fa-book-open" style="position: absolute;
-                              right: 100%;
-                              top: 50%;
-                              transform: translateY(-50%);"></i>
+                              <i *ngIf="story.desc" class="fa-light fa-book-open"></i>
                               <span class="text-muted" style="margin-right: 8px">{{ind + 1}}.</span>{{story.name}}
                             </button>
                             
