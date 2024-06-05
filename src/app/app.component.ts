@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PodchaserService } from './podchaser.service';
 import 'zone.js';
 
 @Component({
@@ -9,7 +9,7 @@ import 'zone.js';
 })
 
 export class AppComponent implements OnInit {
-
+  episodeDetails: any;
   data: any = 'initial value';
   serverUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSyz3x9RStcu6E59H21ZP9nPjYICN9xkF4ugUfhZMeDKAtm5AQGLZy1RdSyA4T7elZ-Elvup6WGTs1q/pub?output=tsv';
   public episodeArray: any
@@ -17,10 +17,14 @@ export class AppComponent implements OnInit {
   public secondArr: any
   public thirdArr: any;
   public winningReaders: string[] = [];
-  public episodeCount = 0
-  constructor(private httpClient: HttpClient) {}
+  public episodeCount = 0;
+  public PODCAST_ID = '1735939';
+  constructor(private podchaserService: PodchaserService) {}
 
   ngOnInit() {
+    // this.fetchEpisodeDetails(this.PODCAST_ID, 'EPISODE_ID');  // Ersätt med relevanta ID:n
+    this.fetchEpisodeDetailsByName(this.PODCAST_ID, 'Södra Latins Crazy Frog');  // Replace with actual episode name
+
     let arr: any = []
     let firstArr: any = []
     let secondArr: any = []
@@ -155,6 +159,32 @@ export class AppComponent implements OnInit {
       return true;
     }
     return true;
+  }
+
+  async fetchEpisodeDetailsByName(podcastId: string, episodeName: string) {
+    console.log(podcastId, episodeName);
+    try {
+      const results = await this.podchaserService.searchEpisodeByName(podcastId, episodeName);
+      console.log(results);
+      if (results?.length > 0) {
+        const episodeId = results[0].id;
+        console.log(`Found episodeId: ${episodeId}`);
+        this.fetchEpisodeDetails(podcastId, episodeId);
+      } else {
+        console.log('No episodes found.' + JSON.stringify(results));
+      }
+    } catch (error) {
+      console.error('Error searching for episode:', error);
+    }
+  }
+
+  async fetchEpisodeDetails(podcastId: string, episodeId: string) {
+    try {
+      this.episodeDetails = await this.podchaserService.getEpisodeDetails(podcastId, episodeId);
+      console.log(this.episodeDetails);
+    } catch (error) {
+      console.error('Error fetching episode details:', error);
+    }
   }
 
   public send(val:any) {
